@@ -51,8 +51,8 @@
         <img src="images/page1.jpg" alt="Page 1" id="manga-page">
     </div>
     <div class="footer">
-        <button onclick="goToPrevious()">Next</button>
-        <button onclick="goToNext()">Previous</button>
+        <button onclick="goToNext()">Next</button>
+        <button onclick="goToPrevious()">Previous</button>
     </div>
     <script>
         const pageMap = {
@@ -74,16 +74,6 @@
             window.location.href = 'index.html';
         }
 
-        function goToPrevious() {
-            const pageKeys = Object.keys(pageMap);
-            const currentIndex = pageKeys.indexOf(currentPage);
-            if (currentIndex > 0) {
-                const previousPage = pageKeys[currentIndex - 1];
-                saveProgress(previousPage);
-                window.location.href = `${previousPage}.html`;
-            }
-        }
-
         function goToNext() {
             const pageKeys = Object.keys(pageMap);
             const currentIndex = pageKeys.indexOf(currentPage);
@@ -92,6 +82,10 @@
                 saveProgress(nextPage);
                 window.location.href = `${nextPage}.html`;
             }
+        }
+
+        function goToPrevious() {
+            // In page1.html, disable the previous button logic because there's no previous page
         }
 
         // Ensure the current page is updated in the script
