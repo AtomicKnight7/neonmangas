@@ -52,7 +52,7 @@
     </div>
     <div class="footer">
         <button onclick="goToNext()">Next</button>
-        <button onclick="goToPrevious()">Previous</button>
+        <!-- Remove the previous button for page 1 -->
     </div>
     <script>
         const pageMap = {
@@ -82,10 +82,6 @@
                 saveProgress(nextPage);
                 window.location.href = `${nextPage}.html`;
             }
-        }
-
-        function goToPrevious() {
-            // In page1.html, disable the previous button logic because there's no previous page
         }
 
         // Ensure the current page is updated in the script
