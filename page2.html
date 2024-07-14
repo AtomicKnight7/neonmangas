@@ -51,13 +51,13 @@
         <img src="images/page2.jpeg" alt="Page 2" id="manga-page">
     </div>
     <div class="footer">
-        <button onclick="goToPrevious()">Next</button>
-        <button onclick="goToNext()">Previous</button>
+        <button onclick="goToPrevious()">Previous</button>
+        <!-- Remove the next button for page 2 -->
     </div>
     <script>
         const pageMap = {
             'page1': 'images/page1.jpg',
-            'page2': 'images/page2.jpg'
+            'page2': 'images/page2.jpeg'
             // Add more pages as needed
         };
 
@@ -84,15 +84,7 @@
             }
         }
 
-        function goToNext() {
-            const pageKeys = Object.keys(pageMap);
-            const currentIndex = pageKeys.indexOf(currentPage);
-            if (currentIndex < pageKeys.length - 1) {
-                const nextPage = pageKeys[currentIndex + 1];
-                saveProgress(nextPage);
-                window.location.href = `${nextPage}.html`;
-            }
-        }
+        // Remove the goToNext() function for page 2 since there's no next page
 
         // Ensure the current page is updated in the script
         document.getElementById('manga-page').addEventListener('load', () => {
