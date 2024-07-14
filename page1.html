@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>War of Harmony - Page 1</title>
+    <style>
+        body {
+            background-color: #1c1c1c;
+            color: white;
+            font-family: Calibri, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .navigation {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+        .navigation button {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .navigation button:hover {
+            background-color: #666;
+        }
+        .content {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <button onclick="goHome()">Home</button>
+    </div>
+    <div class="content">
+        <img src="images/page1.jpg" alt="Page 1" id="manga-page">
+    </div>
+    <div class="footer">
+        <button onclick="goToPrevious()">Next</button>
+        <button onclick="goToNext()">Previous</button>
+    </div>
+    <script>
+        const pageMap = {
+            'page1': 'images/page1.jpg',
+            'page2': 'images/page2.jpg'
+            // Add more pages as needed
+        };
+
+        let currentPage = localStorage.getItem('currentPage') || 'page1';
+
+        document.getElementById('manga-page').src = pageMap[currentPage];
+
+        function saveProgress(page) {
+            localStorage.setItem('currentPage', page);
+        }
+
+        function goHome() {
+            saveProgress('page1');
+            window.location.href = 'index.html';
+        }
+
+        function goToPrevious() {
+            const pageKeys = Object.keys(pageMap);
+            const currentIndex = pageKeys.indexOf(currentPage);
+            if (currentIndex > 0) {
+                const previousPage = pageKeys[currentIndex - 1];
+                saveProgress(previousPage);
+                window.location.href = `${previousPage}.html`;
+            }
+        }
+
+        function goToNext() {
+            const pageKeys = Object.keys(pageMap);
+            const currentIndex = pageKeys.indexOf(currentPage);
+            if (currentIndex < pageKeys.length - 1) {
+                const nextPage = pageKeys[currentIndex + 1];
+                saveProgress(nextPage);
+                window.location.href = `${nextPage}.html`;
+            }
+        }
+
+        // Ensure the current page is updated in the script
+        document.getElementById('manga-page').addEventListener('load', () => {
+            currentPage = Object.keys(pageMap).find(key => pageMap[key] === document.getElementById('manga-page').src);
+        });
+
+    </script>
+</body>
+</html>
