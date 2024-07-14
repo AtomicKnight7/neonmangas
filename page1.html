@@ -2,97 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>War of Harmony - Page 1</title>
+    <title>Page 1 - War of Harmony</title>
     <style>
         body {
-            background-color: #1c1c1c;
-            color: white;
-            font-family: Calibri, sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
-        }
-        .navigation {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-        }
-        .navigation button {
-            background-color: #444;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #333; /* Light black background color */
+            font-family: 'Calibri', sans-serif;
             color: white;
-            border: none;
-            padding: 10px;
-            margin: 5px;
-            cursor: pointer;
         }
-        .navigation button:hover {
-            background-color: #666;
-        }
-        .content {
-            text-align: center;
-            margin-top: 50px;
-        }
-        .footer {
+        .nav-top {
             position: fixed;
-            bottom: 10px;
-            width: 100%;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: flex-end;
+            z-index: 1000; /* Ensures navigation is above the image */
+        }
+        .nav-bottom {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
             display: flex;
             justify-content: space-between;
-            padding: 0 20px;
+            z-index: 1000; /* Ensures navigation is above the image */
+        }
+        .nav-button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        .nav-button[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .page-image {
+            max-width: 90%;
+            max-height: 90%;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
         }
     </style>
 </head>
 <body>
-    <div class="navigation">
-        <button onclick="goHome()">Home</button>
+    <div class="nav-top">
+        <a href="index.html" class="nav-button">Home</a>
     </div>
-    <div class="content">
-        <img src="images/page1.jpg" alt="Page 1" id="manga-page">
+    
+    <img src="file:///C:/Users/ADMIN/Pictures/test/page1.jpg" alt="Page 1" class="page-image">
+    
+    <div class="nav-bottom">
+        <a href="page2.html" class="nav-button" onclick="saveProgress('page2.html')">Next</a>
+        <button class="nav-button" disabled>Previous</button>
     </div>
-    <div class="footer">
-        <button onclick="goToNext()">Next</button>
-        <!-- No previous button for page 1 -->
-    </div>
+    
     <script>
-        const pageMap = {
-            'page1': 'images/page1.jpg',
-            'page2': 'images/page2.jpeg'
-            // Add more pages as needed
-        };
-
-        let currentPage = localStorage.getItem('currentPage') || 'page1';
-
-        // Set the source of the manga page image
-        document.getElementById('manga-page').src = pageMap[currentPage];
-
-        // Function to save current page to localStorage
         function saveProgress(page) {
             localStorage.setItem('currentPage', page);
         }
 
-        // Function to navigate to home (index.html)
-        function goHome() {
-            saveProgress('page1'); // Save progress before going home
-            window.location.href = 'index.html'; // Navigate to home page
-        }
-
-        // Function to navigate to the next page
-        function goToNext() {
-            const pageKeys = Object.keys(pageMap);
-            const currentIndex = pageKeys.indexOf(currentPage);
-            if (currentIndex < pageKeys.length - 1) {
-                const nextPage = pageKeys[currentIndex + 1];
-                saveProgress(nextPage); // Save progress to localStorage
-                window.location.href = `${nextPage}.html`; // Navigate to next page
-            }
-        }
-
-        // Ensure the current page is updated in the script
-        document.getElementById('manga-page').addEventListener('load', () => {
-            currentPage = Object.keys(pageMap).find(key => pageMap[key] === document.getElementById('manga-page').src);
+        // Disable the previous button (assuming it should not function)
+        document.querySelector('.nav-button[disabled]').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default action
         });
-
     </script>
 </body>
 </html>
