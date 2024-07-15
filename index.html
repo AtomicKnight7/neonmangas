@@ -4,17 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neo№ Mangas</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #1c1c1c;
+            color: white;
+            font-family: Calibri, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .manga-list {
+            margin-top: 100px;
+        }
+        .manga-item {
+            display: inline-block;
+            margin: 20px;
+            cursor: pointer;
+        }
+        .manga-item img {
+            width: 200px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .manga-item p {
+            margin: 5px 0;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">Neo№ Mangas</h1>
-        <div class="manga">
-            <a href="war-of-harmony.html">
-                <img src="images/cover.jpg" alt="War of Harmony">
-                <p>War of Harmony</p>
-            </a>
+    <div class="header">Neo№ Mangas</div>
+    <div class="manga-list">
+        <div class="manga-item" onclick="goToManga()">
+            <img src="images/cover.jpeg" alt="War of Harmony">
+            <p>War of Harmony</p>
         </div>
     </div>
+    <script>
+        function goToManga() {
+            window.location.href = 'war-of-harmony.html';
+        }
+    </script>
 </body>
 </html>
